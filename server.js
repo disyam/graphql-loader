@@ -1,7 +1,20 @@
 const { ApolloServer, gql } = require("apollo-server");
+const dataloader = require("dataloader");
 
 const { Character, Quote } = require("./models");
-const loaders = require("./loaders");
+
+const loaders = () => ({
+  getCharacterByIdLoader: new dataloader(async characterIds => {
+    const rows = await Character.findAll({ where: { id: characterIds } });
+    const characters = rows.reduce(
+      (acc, row) => acc.set(row.id, row),
+      new Map()
+    );
+    return characterIds.map(id =>
+      characters.has(id) ? characters.get(id).get({ plain: true }) : null
+    );
+  })
+});
 
 const typeDefs = gql`
   type Character {
@@ -51,5 +64,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
-  console.log(`listening at ${url}`);
+  console.info(`listening at ${url}`);
 });
