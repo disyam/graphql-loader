@@ -1,0 +1,44 @@
+{
+  "name": "graphql-loader",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --delay 3 server.js",
+    "migrate": "sequelize db:migrate",
+    "unmigrate": "sequelize db:migrate:undo",
+    "seed": "sequelize db:seed:all",
+    "unseed": "sequelize db:seed:undo:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/disyam/graphql-loader.git"
+  },
+  "author": "disyam.adityana@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/disyam/graphql-loader/issues"
+  },
+  "homepage": "https://github.com/disyam/graphql-loader#readme",
+  "dependencies": {
+    "apollo-server": "~2.4.8",
+    "dataloader": "~1.4.0",
+    "graphql": "~14.2.1",
+    "moment": "~2.24.0",
+    "nodemon": "~1.18.11",
+    "sequelize": "~5.7.6",
+    "sqlite3": "~4.0.6",
+    "uuid": "~3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "~5.16.0",
+    "eslint-config-prettier": "~4.2.0",
+    "eslint-plugin-graphql": "~3.0.3",
+    "eslint-plugin-node": "~8.0.1",
+    "eslint-plugin-prettier": "~3.0.1",
+    "prettier": "~1.17.0"
+  },
+  "engines": {
+    "node": "10"
+  }
+}
